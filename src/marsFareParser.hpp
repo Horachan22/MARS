@@ -7,6 +7,7 @@
 #include <array>
 
 #ifndef MARS_FARE_PARSER_HPP
+#define MARS_FARE_PARSER_HPP
 
 namespace MARS
 {
