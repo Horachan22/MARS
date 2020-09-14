@@ -1,4 +1,6 @@
 #ifndef MARS_CALCULATOR_HPP
+#define MARS_CALCULATOR_HPP
+
 #define BRANCH_MULTIPLIER 1.1
 
 namespace MARS
