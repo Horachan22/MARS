@@ -1,3 +1,5 @@
+#include "marsFareParser.hpp"
+
 #ifndef MARS_CALCULATOR_HPP
 #define MARS_CALCULATOR_HPP
 
@@ -9,33 +11,45 @@ namespace MARS
   {
   public:
     //JR北海道の幹線データの読み取りを行う関数
-    //FIXME : Use function which reads 'fare_data' and returns fare.
     static int
     get_H_main_fare(float calculate_dis)
     {
-      if(calculate_dis < 10)
+      int ret = -1;
+      auto fare_data = FareParser::get_line_fare("Fare_Data/(H)Main_Line_Fare.csv");
+      for(auto fare:fare_data)
       {
-        return 200;
+        if(calculate_dis >= fare[0])
+        {
+          ret = fare[1];
+        }
+        else
+        {
+          break;
+        }
       }
-      else
-      {
-        return 400;
-      }
+
+      return ret;
     }
 
     //JR北海道の地方線データの読み取りを行う関数
-    //FIXME : Same as above.
     static int
     get_H_branch_fare(float calculate_dis)
     {
-      if(calculate_dis < 10)
+      int ret = -1;
+      auto fare_data = FareParser::get_line_fare("Fare_Data/(H)Branch_Line_Fare.csv");
+      for(auto fare:fare_data)
       {
-        return 300;
+        if(calculate_dis >= fare[0])
+        {
+          ret = fare[1];
+        }
+        else
+        {
+          break;
+        }
       }
-      else
-      {
-        return 600;
-      }
+
+      return ret;
     }
 
     //JR北海道のみを利用したときの運賃
