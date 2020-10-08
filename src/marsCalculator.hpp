@@ -3,6 +3,7 @@
 
 #ifndef MARS_CALCULATOR_HPP
 #define BRANCH_MULTIPLIER 1.1
+#define STUDENT_DISCOUNT_MULTIPLIER 0.8
 
 namespace MARS
 {
@@ -50,9 +51,19 @@ namespace MARS
 
       return pay;
     }
+
+    //学割運賃の計算
+    static int
+    get_student_discount_fare(float main_dis,
+                              float branch_dis,
+                              int fare)
+    {
+      if(main_dis + branch_dis > 100)
       {
-        return 600;
+        return floor(fare * STUDENT_DISCOUNT_MULTIPLIER / 10) * 10;
       }
+
+      return fare;
     }
 
     //JR北海道のみを利用したときの運賃
