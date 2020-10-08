@@ -31,15 +31,25 @@ namespace MARS
     }
 
     //JR北海道の地方線データの読み取りを行う関数
-    //FIXME : Same as above.
     static int
     get_H_branch_fare(float calculate_dis)
     {
-      if(calculate_dis < 10)
+      int pay;
+      auto fare_data = FareParser::get_line_fare("Fare_Data/(H)Branch_Line_Fare.csv");
+      for(auto fare:fare_data)
       {
-        return 300;
+        if(calculate_dis >= fare[0])
+        {
+          pay = fare[1];
+        }
+        else
+        {
+          break;
+        }
       }
-      else
+
+      return pay;
+    }
       {
         return 600;
       }
