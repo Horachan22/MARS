@@ -4,6 +4,7 @@
 #ifndef MARS_CALCULATOR_HPP
 #define BRANCH_MULTIPLIER 1.1
 #define STUDENT_DISCOUNT_MULTIPLIER 0.8
+#define ROUND_DISCOUNT_MULTIPLIER 0.9
 
 namespace MARS
 {
@@ -64,6 +65,20 @@ namespace MARS
       }
 
       return fare;
+    }
+
+    //往復運賃の計算
+    static int
+    get_roundtrip_fare(float main_dis,
+                       float branch_dis,
+                       int fare)
+    {
+      if(main_dis + branch_dis > 600)
+      {
+        return floor(fare * 2 * ROUND_DISCOUNT_MULTIPLIER / 10) * 10;
+      }
+
+      return fare * 2;
     }
 
     //JR北海道のみを利用したときの運賃
